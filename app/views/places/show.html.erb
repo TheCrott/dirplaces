@@ -1,5 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+<style type="text/css">
+    html, body { height: 100%; margin: 0; padding: 0; }
+    #map { height: 230px; width: 230px; }
+</style>
+
 <p>
   <strong>Name:</strong>
   <%= @place.name %>
@@ -30,5 +35,37 @@
   <%= @place.user_id %>
 </p>
 
+<%= @place.latitude %>
+<%= @place.longitude %>
+
+<div id="map"></div>
+
 <%= link_to 'Edit', edit_place_path(@place) %> |
 <%= link_to 'Back', places_path %>
+
+<script type="text/javascript">
+
+  function initialize() {
+      /*
+        ini yang udah ga bisa:
+        var mycenter = { lat: <%= @place.latitude %>, lng: <%= @place.longitude %> }
+
+        yang bener yang ini:
+        var mycenter = new google.maps.LatLng(-6, 101);
+      */
+      //var mycenter = new google.maps.LatLng(-6, 101);
+      var mycenter = new google.maps.LatLng(<%= @place.latitude %>, <%= @place.longitude %>);
+      var mapOptions = {
+        center: mycenter,
+        zoom: 12
+      };
+      var map = new google.maps.Map(document.getElementById('map'),
+          mapOptions);
+      var marker = new google.maps.Marker({
+        position: mycenter,
+        map: map
+      });
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+  //marker.setMap(map); <--- ini ga bisa utk marking posisi
+</script>
