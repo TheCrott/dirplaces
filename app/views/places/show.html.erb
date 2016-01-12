@@ -1,44 +1,37 @@
 <p id="notice"><%= notice %></p>
 
+<div class="row">
+  <div class="col-md-3">
+    <h3><%= @place.name %></h3>
+    <p>
+      <strong>Address: </strong><%= @place.address %>
+    </p>
+    <p>
+      <strong>Phone: </strong><%= @place.phone %>
+    </p>
+    <p>
+      <strong>Website: </strong><%= @place.website %>
+    </p>
+    <p>
+      <strong>Description: </strong><%= @place.description %>
+    </p><br />
+    <div id="map"></div>
+  </div>
+
+  <div class="col-md-9">
+    <h3>Reviews By People</h3>
+  </div>
+</div>
+
 <style type="text/css">
     html, body { height: 100%; margin: 0; padding: 0; }
     #map { height: 230px; width: 230px; }
 </style>
 
-<p>
-  <strong>Name:</strong>
-  <%= @place.name %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @place.address %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @place.description %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @place.phone %>
-</p>
-
-<p>
-  <strong>Website:</strong>
-  <%= @place.website %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @place.user_id %>
-</p>
-
-<%= @place.latitude %>
-<%= @place.longitude %>
-
-<div id="map"></div>
+<!--
+  <%= @place.latitude %>
+  <%= @place.longitude %>
+-->
 
 <%= link_to 'Edit', edit_place_path(@place) %> |
 <%= link_to 'Back', places_path %>
