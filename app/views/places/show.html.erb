@@ -3,6 +3,7 @@
 <div class="row">
   <div class="col-md-3">
     <h3><%= @place.name %></h3>
+    <div class="average"></div>
     <p>
       <strong>Address: </strong><%= @place.address %>
     </p>
@@ -24,6 +25,7 @@
       <h5>Buat Review</h5>
       <%= render "reviews/form" %>
       <h5>Review dari user lain</h5>
+      <h5>Nilai rata-rata review: <%= @place.average_rating %></h5>
       <%= render @reviews %>
     <% end %>
   </div>
@@ -76,4 +78,11 @@
       readOnly: true
     });
   <% end %>
+
+  $(".average").raty({
+    starOn: "<%= image_path('star-on.png') %>",
+    starOff: "<%= image_path('star-off.png') %>",
+    score: "<%= @place.total_average_rating %>",
+    readOnly: true
+  });
 </script>
