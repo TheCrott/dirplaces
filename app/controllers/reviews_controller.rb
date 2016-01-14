@@ -15,7 +15,8 @@ class ReviewsController < ApplicationController
       else
         #format.html { render :new }
         #format.json { render json: @place.errors, status: :unprocessable_entity }
-        redirect_to place_path(@review.place), notice: "Ada sesuatu yang salah!"
+        #redirect_to place_path(@review.place), notice: "Ada sesuatu yang salah!"
+        format.html {redirect_to place_path(@review.place), notice: "Ada sesuatu yang salah!" }
       end
     end
   end
@@ -48,6 +49,6 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:content, :place_id)
+    params.require(:review).permit(:content, :place_id, :score)
   end
 end
